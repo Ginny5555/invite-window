@@ -66,17 +66,19 @@
             </div>
           </div>
           <div v-if="tab.type === 'locations'">
-            <div class="form-group">
-              <label class="required" for="city">Main Location</label>
-              <select id="selectCity" v-model="tab.city" :disabled="buttonClicked">
-                <option value>Main Precoro US</option>
-                <option value="berlin">Main Precoro Berlin</option>
-                <option value="venice">Precoro Venice</option>
-                <option value="canada">Precoro Canada</option>
-                <option value="poland">Main Precoro Poland</option>
-                <option value="mexico">Precoro Mexico</option>
-                <option value="ukraine">Precoro Ukraine Kyiv</option>
-              </select>
+            <div>
+              <div class="form-group">
+                <label class="required" for="city">Main Location</label>
+                <select id="selectCity" v-model="tab.city" :disabled="buttonClicked">
+                  <option value>Main Precoro US</option>
+                  <option value="berlin">Main Precoro Berlin</option>
+                  <option value="venice">Precoro Venice</option>
+                  <option value="canada">Precoro Canada</option>
+                  <option value="poland">Main Precoro Poland</option>
+                  <option value="mexico">Precoro Mexico</option>
+                  <option value="ukraine">Precoro Ukraine Kyiv</option>
+                </select>
+              </div>
               <div class="all-locations">
                 <input
                   type="checkbox"
@@ -87,7 +89,7 @@
                 <h3>Select All Locations</h3>
               </div>
             </div>
-            <div class="form-group">
+            <div class="lable">
               <div class="lable-available">Available Locations</div>
               <div class="availiable">
                 <div class="availiable-city" v-for="city in cities" :key="city.id" :for="city.id">
@@ -191,7 +193,7 @@
                     v-model="selectedManagement"
                     :disabled="buttonClicked"
                   /> Admin (Full access)
-                  <img class src="../assets/triangle.svg" alt="triangle Icon" />
+                  <img src="../assets/triangle.svg" class="triangle" alt="triangle Icon" />
                 </div>
               </div>
             </div>
@@ -441,22 +443,51 @@ $access-color: rgba(103, 111, 143, 1);
   margin-right: 16px;
 }
 @mixin flex-column {
+  display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
   display: flex;
+  -webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-moz-box-orient: vertical;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+
   flex-direction: column !important;
 }
 @mixin flex {
+   display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
   display: flex;
 }
 @mixin align-center {
+   display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
   display: flex;
   align-items: center;
 }
 @mixin flow {
   flex-flow: wrap;
 }
+@mixin flex-center {
+   display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
 .main {
   &-inputs {
     @include flex;
+    flex-flow: wrap;
   }
 }
 .invite {
@@ -573,6 +604,7 @@ $access-color: rgba(103, 111, 143, 1);
     @include align-center;
     @include font-16;
     color: $h3-color;
+    background: $white;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -874,6 +906,7 @@ td:first-child {
 }
 .lable-available {
   @include font-16;
+  text-align: left;
   color: $labelGrey;
   margin-bottom: 10px;
 }
@@ -918,5 +951,104 @@ a {
 
 a:hover {
   border-bottom-color: transparent;
+}
+@media (max-width: 720px) {
+  .form-group {
+    & select {
+      background-position: 224px center;
+
+      width: 247px;
+    }
+    & input {
+      width: 229px;
+    }
+  }
+}
+@media (max-width: 480px) {
+  h3 {
+    font-size: 12px !important;
+    line-height: 20px;
+  }
+  .tab-buttons button.active {
+    @include flex-center;
+  }
+  .tab-buttons button {
+    font-size: 12px;
+    @include flex-center;
+  }
+  .tab-buttons button.active span {
+    width: 15px;
+    height: 15px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+  .tab-buttons button span {
+    width: 15px;
+    height: 15px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+  .tab-buttons button span.comple {
+    padding: 4px 5px 4px 5px !important;
+
+}
+.tab-buttons button.active span.comple {
+    padding: 4px 5px 4px 5px !important;
+
+}
+thead th {
+  font-size: 10px;
+}
+thead tr th {
+    padding-right: 8px;
+    padding-bottom: 11px;
+}
+td:first-child {
+line-height: 12.04px;
+    font-size: 10px;
+}
+td:first-child, th:first-child {
+    width: 40px;
+    padding-right: 12px;
+}
+.roles-management__list .list {
+  line-height: 12.04px;
+    font-size: 10px;
+    margin-left: 0;
+}
+.details-management {
+    font-size: 12px;
+    margin-left: 0;
+    }
+    .roles-management {
+    border: none;
+    font-size: 12px;}
+    .roles-management__triangle{
+     margin-left: 0;
+    font-size: 10px;
+    }
+    .info, .triangle  {
+      width: 15px;
+      height: 15px;
+    }
+    .roles-info {
+
+    font-size: 10px;}
+    .button , select#select, select#selectCity{
+
+    font-size: 12px;}
+    .form-group input{
+      font-size: 12px;
+    }
+    .invite-buttons__switch {
+      font-size: 10px;
+          justify-content: space-around;
+    }
+    .availiable-city:nth-last-child(-n+3) {
+    margin-left: 0;
+}
+.availiable {
+    height: fit-content;
+}
 }
 </style>

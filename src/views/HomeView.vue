@@ -22,11 +22,31 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 @mixin flex-align {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+@media  (max-width: 720px) {
+  .wrapper {
+  width: 667px!important;
+  }
+}
+@media  (max-width: 480px) {
+  .wrapper {
+  width: 320px!important;
+
+}
+.cross {
+  width: 16px!important;
+  height: 16px;
+
+}
+h1 {
+  font-size:16px!important;
+}
+  /* Styles for mobile devices go here */
 }
 .wrapper {
   width: 867px;
